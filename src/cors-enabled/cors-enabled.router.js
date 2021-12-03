@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const controller = require("./cors-enabled.controller");
 const methodNotAllowed = require("../errors/methodNotAllowed");
+const cors = require("cors");
+
 
 router
   .route("/:corsId")
@@ -11,7 +13,7 @@ router
 
 router
   .route("/")
-  .get(controller.list)
+  .get(cors(), controller.list)
   .post(controller.create)
   .all(methodNotAllowed);
 
